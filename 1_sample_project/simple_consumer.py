@@ -2,12 +2,17 @@ from confluent_kafka import Consumer
 
 topic_name = 'testtopic'
 consumer_group = 'testgroup'
+# For assigning consumer to a particular partition
+#partition_id = 1
 
 c = Consumer({'bootstrap.servers': 'localhost:9092',
               'group.id': consumer_group,
               'auto.offset.reset': 'earliest'})
 
 c.subscribe([topic_name])
+
+# Assigning consumer to a particular partition
+#c.assign([TopicPartition(topic_name, partition_id)])
 
 try:
     while True:
